@@ -11,6 +11,7 @@ describe('Yams tests', () => {
         { rools: [[4, 4, 4, 1, 2], [2, 1, 1, 2, 5]], expected: 39 }, // Brelan of 4 + Chance
         { rools: [[6, 6, 6, 1, 2], [2, 1, 1, 2, 6]], expected: 40 }, // Brelan of 6 + Chance
         { rools: [[6, 6, 6, 6, 2], [4, 1, 4, 4, 2]], expected: 63 }, // Carré of 6 + Brelan of 4
+        { rools: [[1, 1, 1, 1, 1], [4, 1, 4, 4, 2]], expected: 78}, // Yams of 1 + Chance
     ])('should return $expected for rools: $rools', ({ rools, expected }) => {
         expect(rollDices(rools)).toBe(expected);
     });

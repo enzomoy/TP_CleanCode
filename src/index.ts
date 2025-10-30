@@ -8,6 +8,13 @@ export function rollDices(rools: number[][]): number {
             return acc;
         }, countDiceValue);
 
+        // Yams
+        const hasFiveOfAKind = Object.values(countDiceValue).some(count => count >= 5);
+        if (hasFiveOfAKind) {
+            total += 50;
+            continue;
+        }
+
         // Carré
         const hasFourOfAKind = Object.values(countDiceValue).some(count => count >= 4);
         if (hasFourOfAKind) {
