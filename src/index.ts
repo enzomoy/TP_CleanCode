@@ -15,6 +15,14 @@ export function rollDices(rools: number[][]): number {
             continue;
         }
 
+        // Grande suite
+        const uniqueValues = Object.keys(countDiceValue).map(Number).sort((a, b) => a - b);
+        const isLargeStraight = (uniqueValues.length === 5) && (uniqueValues[4] - uniqueValues[0] === 4);
+        if (isLargeStraight) {
+            total += 40;
+            continue;
+        }
+
         // Carré
         const hasFourOfAKind = Object.values(countDiceValue).some(count => count >= 4);
         if (hasFourOfAKind) {
