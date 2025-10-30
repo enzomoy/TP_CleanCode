@@ -3,8 +3,9 @@ export function rollDices(rools: number[][]): number {
     for (const roll of rools) {
 
         const countOne = roll.filter(val => val === 1).length;
+        const countTwo = roll.filter(val => val === 2).length;
 
-        if (countOne >= 3) {
+        if (countOne >= 3 || countTwo >= 3) {
             total += 28;
             continue;
         }
