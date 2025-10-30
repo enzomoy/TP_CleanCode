@@ -32,7 +32,7 @@ export function rollDices(rools: number[][]): number {
         }
 
         // Brelan
-        if (hasNOfAKind(countDiceValue, 3)) {
+        if (hasThree) {
             total += 28;
             continue;
         }
