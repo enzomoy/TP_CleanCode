@@ -9,14 +9,13 @@ export function rollDices(rools: number[][]): number {
         }, countDiceValue);
 
         // Yams
-        const hasFiveOfAKind = Object.values(countDiceValue).some(count => count >= 5);
-        if (hasFiveOfAKind) {
+        if (hasNOfAKind(countDiceValue, 5)) {
             total += 50;
             continue;
         }
 
         // Grande suite
-        const uniqueValues = Object.keys(countDiceValue).map(Number).sort((a, b) => a - b);
+        const uniqueValues = getUniqueValues(countDiceValue);
         const isLargeStraight = (uniqueValues.length === 5) && (uniqueValues[4] - uniqueValues[0] === 4);
         if (isLargeStraight) {
             total += 40;
@@ -24,21 +23,31 @@ export function rollDices(rools: number[][]): number {
         }
 
         // Carré
-        const hasFourOfAKind = Object.values(countDiceValue).some(count => count >= 4);
-        if (hasFourOfAKind) {
+        if (hasNOfAKind(countDiceValue, 4)) {
             total += 35;
             continue;
         }
 
         // Brelan
-        const hasThreeOfAKind = Object.values(countDiceValue).some(count => count >= 3);
-        if (hasThreeOfAKind) {
+        if (hasNOfAKind(countDiceValue, 3)) {
             total += 28;
             continue;
         }
 
         // Chance
-        total += roll.reduce((sum, val) => sum + val, 0);
+        total += sumArray(roll);
     }
     return total;
+}
+
+function sumArray(arr: number[]): number {
+    return arr.reduce((sum, val) => sum + val, 0);
+}
+
+function hasNOfAKind(counts: Record<number, number>, n: number): boolean {
+    return Object.values(counts).some(count => count >= n);
+}
+
+function getUniqueValues(counts: Record<number, number>): number[] {
+    return Object.keys(counts).map(Number);
 }
