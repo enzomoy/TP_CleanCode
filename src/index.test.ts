@@ -15,6 +15,9 @@ describe('Yams tests', () => {
         { rools: [[1, 2, 3, 4, 5], [4, 1, 4, 4, 2]], expected: 68}, // Grande suite de 5 + Brelan of 4
         { rools: [[1, 2, 3, 4, 5], [4, 4, 4, 4, 4]], expected: 90}, // Grande suite de 6 + Yams of 4
         { rools: [[4, 4, 4, 2, 2], [4, 4, 4, 4, 4]], expected: 80}, // Full of 4 and 2 + Yams of 4
+
+        { rools: [[4, 4, 4, 4, 4], [4, 4, 4, 4, 4]], expected: 85}, // Full of 4 and 2 + Unavailable Yams -> Carré of 4
+
     ])('should return $expected for rools: $rools', ({ rools, expected }) => {
         expect(rollDices(rools)).toBe(expected);
     });
